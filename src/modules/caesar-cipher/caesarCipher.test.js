@@ -16,13 +16,28 @@ test("wraps smaller case from z to a", () => {
     expect(caesarCipher("xyz", 1)).toBe("yza")
 });
 
-test("works with special characters", () => {
-    expect(caesarCipher("@abc", 1)).toBe("@bcd")
+test("works with special characters and lower case", () => {
+    expect(caesarCipher("[@abc!]", 1)).toBe("[@bcd!]")
 });
+
+test("works with special characters and lower case", () => {
+    expect(caesarCipher("{_@abc!^}", 1)).toBe("{_@bcd!^}")
+});
+
 
 test("works with punctuation and smaller case", () => {
     expect(caesarCipher("xyz!", 1)).toBe("yza!")
 });
+
+test("works with special characters and upper case", () => {
+    expect(caesarCipher("[@ABC!]", 1)).toBe("[@BCD!]")
+});
+
+test("works with special characters and upper case", () => {
+    expect(caesarCipher("{_@ABC!^}", 1)).toBe("{_@BCD!^}")
+});
+
+
 
 test("works with capital letters", () => {
     expect(caesarCipher("ABC", 1)).toBe("BCD")
