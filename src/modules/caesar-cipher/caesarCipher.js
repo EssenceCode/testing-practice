@@ -1,54 +1,50 @@
-const isLowerCase = string => {
-    if(string === string.toLowerCase()) return true;
-
-    return false;
-}
-
-function caesarCipher(string, key) {
+const caesarCipher = (str, shift = 0) => {
     let result = ""
-    const regex = /\p{P}/gu;
 
-    const smallLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-    const capitalLetters = smallLetters.map((letter) => letter.toUpperCase())
-    const punctuations = ["!", "?", ".", ";", ":", "'"]
+    if(shift === 0) return str;
 
-    for (let i = 0; i < string.length; i += 1) {
-        if(isLowerCase(string[i]) || regex.test(string[i])) {
-            if(smallLetters.includes(string[i])) {
-                let code = smallLetters.indexOf(string[i]);
-                code += key;
+    for(let i = 0; i < str.length; i += 1) {
+        let charCode = str[i].charCodeAt();
+        
+        if((charCode >= 97 && charCode <= 122)) {
+            charCode += shift
 
-                let index = code;
-                index %= 26;
+            charCode -= 97;
 
-                result += smallLetters[index]
-            };
+            charCode %= 26;
 
-            
+            charCode += 97;
+
+            const toString = String.fromCharCode(charCode)
+           
+
+            result += toString
+
         };
+      
+        if((charCode >= 65 && charCode <= 90)) {
+       
+            charCode += shift
+            charCode -= 65;
 
-        if(isLowerCase(string[i]) === false) {
-            if(capitalLetters.includes(string[i])) {
-                let code = capitalLetters.indexOf(string[i]);
-                code += key;
+            charCode %= 26;
 
-                let index = code;
-                index %= 26;
-                result += capitalLetters[index]
+            charCode += 65;
 
-            };
+            const toString = String.fromCharCode(charCode)
+          
+
+            result += toString
+
         };
-
-        if(regex.test(string[i])) {
-            if(punctuations.includes(string[i]))
-
-            result += string[i]
-        }
-
+        
+        if(charCode < 97 && charCode < 65) {
+            console.log("baz")
+            result += str[i];
+        };
         
     };
-
+    
     return result
-};
-
+}
 module.exports = caesarCipher
