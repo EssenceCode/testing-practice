@@ -1,3 +1,9 @@
+const codeAt = (strInt) => {
+    if(strInt >= 97 && strInt <= 122 ) return 97
+
+    return 65
+}
+
 const caesarCipher = (str, shift = 0) => {
     let result = ""
 
@@ -6,42 +12,29 @@ const caesarCipher = (str, shift = 0) => {
     for(let i = 0; i < str.length; i += 1) {
         let charCode = str[i].charCodeAt();
         
-        if((charCode >= 97 && charCode <= 122)) {
-            charCode += shift
+        if((charCode >= 97 && charCode <= 122) || (charCode >= 65 && charCode <= 90)) {
+            const code = codeAt(charCode);
 
-            charCode -= 97;
+            charCode += shift;
+
+            charCode -= code;
 
             charCode %= 26;
 
-            charCode += 97;
+            charCode += code;
 
             const toString = String.fromCharCode(charCode)
            
 
             result += toString
 
-        };
-      
-        if((charCode >= 65 && charCode <= 90)) {
-       
-            charCode += shift
-            charCode -= 65;
-
-            charCode %= 26;
-
-            charCode += 65;
-
+        } else {
             const toString = String.fromCharCode(charCode)
-          
 
             result += toString
-
         };
+      
         
-        if(charCode < 97 && charCode < 65) {
-          
-            result += str[i];
-        };
         
     };
     
