@@ -1,5 +1,3 @@
-// const caesarCipher = require("./caesarCipher");
-
 const caesarCipher = require("./caesarCipher");
 
 test("returns empty string if there's no given string as argument", () => {
@@ -37,4 +35,6 @@ test("wraps upper case from Z to A", () => {
 test("works with punctuation and upper case", () => {
     expect(caesarCipher("XYZ!", 1)).toBe("YZA!")
 });
+
+
 

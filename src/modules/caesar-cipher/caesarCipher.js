@@ -39,7 +39,7 @@ const caesarCipher = (str, shift = 0) => {
         };
         
         if(charCode < 97 && charCode < 65) {
-            console.log("baz")
+          
             result += str[i];
         };
         
