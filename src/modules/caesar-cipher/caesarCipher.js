@@ -4,7 +4,7 @@ const codeAt = (strInt) => {
     return 65
 }
 
-const caesarCipher = (str, shift = 0) => {
+export default function caesarCipher(str, shift = 0) {
     let result = ""
 
     if(shift === 0) return str;
@@ -40,4 +40,3 @@ const caesarCipher = (str, shift = 0) => {
     
     return result
 }
-module.exports = caesarCipher

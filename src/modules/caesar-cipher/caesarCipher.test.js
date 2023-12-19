@@ -1,4 +1,5 @@
-const caesarCipher = require("./caesarCipher");
+// const caesarCipher = require("./caesarCipher");
+import caesarCipher from "./caesarCipher"
 
 test("returns empty string if there's no given string as argument", () => {
     expect(caesarCipher("", 1)).toBe("");
@@ -23,7 +24,6 @@ test("works with special characters and lower case", () => {
 test("works with special characters and lower case", () => {
     expect(caesarCipher("{_@abc!^}", 1)).toBe("{_@bcd!^}")
 });
-
 
 test("works with punctuation and smaller case", () => {
     expect(caesarCipher("xyz!", 1)).toBe("yza!")
