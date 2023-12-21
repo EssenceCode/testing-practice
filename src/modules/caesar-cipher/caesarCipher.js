@@ -1,42 +1,28 @@
-const codeAt = (strInt) => {
-    if(strInt >= 97 && strInt <= 122 ) return 97
+const codeAt = (charVal) => {
+    if(charVal >= 97 && charVal <= 122 ) return 97
 
     return 65
-}
+};
 
-export default function caesarCipher(str, shift = 0) {
-    let result = ""
+const mod = (charVal) => ((charVal % 26) + 26) % 26;
 
+const shiftChar = (str, shift) => {
+    const charCode = str.charCodeAt();
+    
     if(shift === 0) return str;
 
-    for(let i = 0; i < str.length; i += 1) {
-        let charCode = str[i].charCodeAt();
-        
-        if((charCode >= 97 && charCode <= 122) || (charCode >= 65 && charCode <= 90)) {
-            const code = codeAt(charCode);
+    if((charCode >= 97 && charCode <= 122) || (charCode >= 65 && charCode <= 90)) {
+        const code = codeAt(charCode);
 
-            charCode += shift;
-
-            charCode -= code;
-
-            charCode %= 26;
-
-            charCode += code;
-
-            const toString = String.fromCharCode(charCode)
-           
-
-            result += toString
-
-        } else {
-            const toString = String.fromCharCode(charCode)
-
-            result += toString
-        };
-      
-        
-        
+        return String.fromCharCode(mod((charCode + shift) - code) + code);
     };
-    
-    return result
-}
+
+    return str;
+}; 
+
+ 
+export default function caesarCipher(string, shift = 0) {
+    const encrypt = string.split("").map((str) => shiftChar(str, shift)).join("");
+
+    return encrypt;
+};
